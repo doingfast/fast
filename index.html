@@ -1,68 +1,115 @@
 <!DOCTYPE html>
-<html lang='ko'>
-    <head>
-        <title>핵허스 닷컴</title>
-        <meta cahrset="utf-8">
-        <meta name="description" content="미술과제 프로젝트에 의한 것입니다">
-        <meta name="keywords" content="남일고 미술 프로젝트, 남일고 미술 빨리하자">
-        <meta http-equiv="refresh" content=":url=https://school.busanedu.net/bsnamil-h/main.do">
-        <script>
-            alert("짜잔! 고객님 핵허스 닷컴에서 준비한 ETS 토익 상품에 당첨되셨습니다!! 고객님은 정가의 50%가격으로 해당 상품을 받으실 수 있습니다!!!^^* ")
-            var username = prompt("고객님의 성함은 무엇인가요? SAM@H**W(H@(dl이라서 물&ㅛ@*어봅니9다 ");
-            document.write("<h2> 방문해주신 " + username + " 님 환영합니다! </h2>")
-            function newPage()  {
-            window.open('https://youtu.be/dQw4w9WgXcQ?si=98l1gPm-ZgZFaSmu=1');
-            } 
-            newPage()
-        </script>
-    </head>
-    <style>
-        body    {
-            background-color:cornsilk
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>전기전자공학의 세계</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>전기전자공학의 세계에 오신 것을 환영합니다!</h1>
+        <div class="user-info">
+            <label for="username">사용자 이름:</label>
+            <input type="text" id="username" placeholder="이름을 입력하세요">
+        </div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#intro">소개</a></li>
+            <li><a href="#fields">주요 분야</a></li>
+            <li><a href="#career">진로 및 전망</a></li>
+            <li><a href="#comments">댓글</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="intro">
+            <h2>전기전자공학이란?</h2>
+            <p>전기전자공학은 전기, 자기, 전자기파의 현상과 원리를 탐구하고, 이를 이용하여 전기 에너지의 생산, 전달, 이용, 그리고 정보의 생성, 처리, 전송 등을 연구하는 학문입니다. 현대 사회의 모든 전자기기와 시스템의 기반을 이루는 핵심 분야이며, 우리의 삶을 윤택하게 만드는 데 필수적인 역할을 합니다.</p>
+            <p>스마트폰, 컴퓨터, TV와 같은 일상 전자기기부터 인공지능, 빅데이터, 자율주행차, 로봇, 우주항공 등 최첨단 기술에 이르기까지 전기전자공학의 영향이 미치지 않는 곳이 없습니다.</p>
+        </section>
+
+        <section id="fields">
+            <h2>전기전자공학의 주요 분야</h2>
+            <p>전기전자공학은 매우 광범위한 분야를 아우르며, 크게 다음과 같은 분야로 나눌 수 있습니다.</p>
+            <ul>
+                <li><strong>반도체 및 집적회로 (Semiconductor & IC):</strong> 마이크로프로세서, 메모리 등 모든 전자기기의 두뇌 역할을 하는 반도체 소자 및 회로 설계, 공정 기술을 연구합니다.</li>
+                <li><strong>통신 및 네트워크 (Communication & Network):</strong> 유무선 통신 시스템, 5G/6G, 위성 통신, 네트워크 보안 등 정보 전송 및 교환 기술을 다룹니다.</li>
+                <li><strong>전력 시스템 및 신재생 에너지 (Power System & Renewable Energy):</strong> 전기의 생산, 송배전, 전력 변환, 스마트 그리드, 태양광, 풍력 등 에너지 효율 및 지속 가능한 기술을 연구합니다.</li>
+                <li><strong>제어 및 로봇 (Control & Robotics):</strong> 시스템의 동작을 제어하고 자동화하는 기술, 로봇의 설계 및 제어를 연구합니다. 자율주행차에도 필수적인 기술입니다.</li>
+                <li><strong>신호처리 및 인공지능 (Signal Processing & AI):</strong> 음성, 영상, 데이터 등의 신호를 분석하고 처리하는 기술, 머신러닝, 딥러닝 등 인공지능 관련 기술을 개발합니다.</li>
+                <li><strong>전자회로 및 시스템 (Electronic Circuits & Systems):</strong> 다양한 전자부품을 이용한 회로 설계 및 시스템 구현을 다룹니다.</li>
+            </ul>
+        </section>
+
+        <section id="career">
+            <h2>전기전자공학 진로 및 전망</h2>
+            <p>전기전자공학은 현대 사회의 핵심 기술을 다루는 만큼, 매우 넓고 밝은 진로를 제공합니다. 졸업 후에는 다양한 산업 분야에서 활약할 수 있습니다.</p>
+            <ul>
+                <li><strong>대기업 및 중견기업:</strong> 삼성전자, LG전자, SK하이닉스, 현대자동차, 통신사(SKT, KT, LG U+) 등 국내외 주요 기업의 연구 개발, 설계, 생산, 품질 관리 직무.</li>
+                <li><strong>IT/소프트웨어 기업:</strong> 네이버, 카카오, NC소프트 등 IT 플랫폼 및 게임 기업의 소프트웨어 개발, AI 엔지니어, 데이터 과학자.</li>
+                <li><strong>반도체 관련 기업:</strong> 반도체 소자 및 장비 개발, 파운드리, 메모리/비메모리 반도체 설계.</li>
+                <li><strong>전력 및 에너지 기업:</strong> 한국전력공사, 한국수력원자력 등 공기업, 신재생에너지 관련 기업.</li>
+                <li><strong>공공기관 및 연구소:</strong> 출연연구소, 정부 기관의 연구원, 공무원 등.</li>
+                <li><strong>창업:</strong> 혁신적인 아이디어를 바탕으로 한 스타트업 창업.</li>
+            </ul>
+            <p>4차 산업혁명 시대에 접어들면서 인공지능, 사물인터넷(IoT), 자율주행, 빅데이터 등 첨단 기술의 발전과 함께 전기전자공학의 중요성은 더욱 커지고 있으며, 관련 분야 전문 인력에 대한 수요는 지속적으로 증가할 것입니다.</p>
+        </section>
+
+        <section id="comments">
+            <h2>댓글</h2>
+            <div class="comment-input">
+                <input type="text" id="comment-text" placeholder="댓글을 입력하세요.">
+                <button onclick="addComment()">댓글 달기</button>
+            </div>
+            <div id="comment-list" class="comment-list">
+                <div class="comment-item">
+                    <span class="comment-author">관리자</span>
+                    <span class="comment-date">2025-06-29 20:30</span>
+                    <p>전기전자공학 웹사이트에 오신 것을 환영합니다! 궁금한 점이 있으면 댓글로 남겨주세요.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 전기전자공학의 세계. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addComment() {
+            const usernameInput = document.getElementById('username');
+            const commentTextInput = document.getElementById('comment-text');
+            const commentList = document.getElementById('comment-list');
+
+            const username = usernameInput.value.trim();
+            const commentText = commentTextInput.value.trim();
+
+            if (username === "") {
+                alert("댓글을 달기 전에 사용자 이름을 입력해주세요.");
+                return;
+            }
+            if (commentText === "") {
+                alert("댓글 내용을 입력해주세요.");
+                return;
+            }
+
+            const now = new Date();
+            const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+
+            const newCommentDiv = document.createElement('div');
+            newCommentDiv.classList.add('comment-item');
+            newCommentDiv.innerHTML = `
+                <span class="comment-author">${username}</span>
+                <span class="comment-date">${dateString}</span>
+                <p>${commentText}</p>
+            `;
+
+            commentList.prepend(newCommentDiv); // 최신 댓글을 맨 위에 추가
+            commentTextInput.value = ''; // 댓글 입력창 비우기
         }
-    </style>
-    <hr>
-    <br>
-    <h1> 핵허스의 자랑 호구네(hogune) 영어 마을을 소개합니다!<br></h1>
-    <h3>단돈 천만원으로 1년동안 갇혀서 영어만 쓰는 호구네 마을</h3>
-    <IMG src="./호그벡.jpg">
-    <br>
-    <body>
-        <input type="button" onclick="alert('치매 환자 152명이 자유롭게 사는 마을이다. 이 마을의 모든 시설과 직원은 치매 환자만을 위해 마련됐다.축구장 3개 크기의 마을은 23개 가옥과 극장, 커피숍, 슈퍼마켓, 레스토랑, 공원, 미용실 등의 편의 시설이 있다. -출처: 헬스 조선')" value="호그벡 마을에 대한 설명" />
-        <br>
-        노인들은 나이가 들면서 근육량, 근밀도 저하가 일어나며 고혈압, 당뇨병이 일어날 가능성이 높기때문에 우리 사회에 노인들을 위한 헬스장은 필요하다.<br>
-        따라서 우리는 이런 시설들이 잘 갖춰진 호그벡 마을을 참조하게 되었다. 초록빛 나무와 따뜻한 색상의 건물이 조화롭게 어울러진 싱그러운 풍경을<br>
-        볼 수 있으며 다양한 크기의 건물들이 모여있는 마을의 특징을 횔용하였다.
-    </body>
-    <br>
-    <h3>호구네 마을에 대한 디자인 스케치</h3>
-    <IMG src="./스케치.jpg" width="500" height="500">
-    <br>
-    <body>
-        <input type="button" onclick="alert('건물 스케치와 완성된 건축 모형은 살짝 다를 수 있음.')" value="참고 사항" />
-        <br>
-        우리 조의 건축물은 5가지의 부분으로 나눌 수 있다. 수영장, 헬스장, 필라테스, 정원, 대문으로 나눌 수 있다.<br>
-        재료는 철근 콘크리트로 기존의 콘크리트가 가졌던 인장력이 압축력보다 상대적으로 아주 약한 문제를 해결하였다.<br>
-        우리는 이외에도 빌라 사보아의 건축가, 르꼬르 뷔지에의 근대 건축 5원칙 중에서 1가지인 옥상정원을 수영장, 헬스장, 필라테스 건물 위에<br>
-        조성하였다. 이에 따라 어르신들이 정원 외에도 옥상에서도 녹지를 즐길 수 있도록 하였고, 담장 벽돌을 갈색으로 하여 따뜻한 느낌을 주었다.<br>
-        녹지와 갈색의 담장 벽돌은 호그벡 마을 디자인에서 큰 영감을 얻었다. <br>
-        *해당 건물은 황금비를 사용했으니 잘 찾아보기를 바랍니다.*
-    </body>
-    <br>
-    <br>
-    <br>
-    <h2>끝까지 내리다보면 + username + 님의 상품이 보이실 겁니다. 화이팅!!!
-    </h2>
-    <br>
-    <img src="./10.jpg" width = '700' height ='500'>
-    <br>
-    <img src="./11.jpg" width ='700' height='500'>
-    <br>
-    <img src="./12.jpg" width ='700' height='500'>
-    <hr>
-    <body>
-        <img src="./호그벡.jpg" width = '700' height = '700' onclick='newPage()'>
-        <br>
-        <strong>위의 이미지를 눌려보세요!!!</strong>
-    </body>
+    </script>
+</body>
 </html>
