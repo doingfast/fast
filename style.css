@@ -1,0 +1,209 @@
+/* 기본 스타일 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* 헤더 */
+header {
+    background: #2c3e50;
+    color: #fff;
+    padding-top: 20px;
+    min-height: 70px;
+    border-bottom: #0779e4 3px solid;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2em;
+}
+
+.user-info {
+    margin-top: 10px;
+    padding-bottom: 10px;
+}
+
+.user-info label {
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+.user-info input[type="text"] {
+    padding: 8px;
+    border: none;
+    border-radius: 4px;
+    width: 150px;
+}
+
+/* 내비게이션 */
+nav {
+    background: #34495e;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: #0779e4 2px solid;
+}
+
+nav ul {
+    padding: 0;
+    list-style: none;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    padding: 0 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #0779e4;
+}
+
+/* 메인 콘텐츠 */
+main {
+    padding: 20px;
+    background: #fff;
+    margin: 20px auto;
+    width: 80%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+section {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #ccc;
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h2 {
+    color: #0779e4;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* 댓글 섹션 */
+.comment-input {
+    display: flex;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.comment-input input[type="text"] {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.comment-input button {
+    background: #0779e4;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.comment-input button:hover {
+    background-color: #055aa7;
+}
+
+.comment-list {
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+.comment-item {
+    background: #f9f9f9;
+    border: 1px solid #eee;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.comment-item .comment-author {
+    font-weight: bold;
+    color: #333;
+    margin-right: 10px;
+}
+
+.comment-item .comment-date {
+    font-size: 0.85em;
+    color: #777;
+}
+
+.comment-item p {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+/* 푸터 */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #2c3e50;
+    color: #fff;
+    margin-top: 30px;
+    border-top: #0779e4 3px solid;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+
+    nav ul li {
+        display: block;
+        padding: 8px 0;
+    }
+
+    .comment-input {
+        flex-direction: column;
+    }
+
+    .comment-input button {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
