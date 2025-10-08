@@ -3,114 +3,344 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PKNU 전기전자전공탐색</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Web IDE - 메모 & 파이썬</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* VS Code와 유사한 테마 및 폰트 설정 */
+        body {
+            font-family: 'Fira Code', monospace;
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+        }
+        /* contenteditable 영역의 기본 스타일 */
+        .editor-area {
+            caret-color: #d4d4d4;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            outline: none;
+            line-height: 1.5;
+            tab-size: 4;
+            -moz-tab-size: 4;
+        }
+        /* contenteditable placeholder */
+        .editor-area:empty::before {
+            content: attr(data-placeholder);
+            color: #6a6a6a;
+            pointer-events: none;
+        }
+        /* 스크롤바 스타일 */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d2d2d;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #555;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #666;
+        }
+
+        /* Python Syntax Highlighting Classes */
+        .token-keyword { color: #c586c0; }
+        .token-function { color: #dcdcaa; }
+        .token-string { color: #ce9178; }
+        .token-number { color: #b5cea8; }
+        .token-comment { color: #6a9955; }
+        .token-operator { color: #d4d4d4; }
+        .token-punctuation { color: #d4d4d4; }
+        .token-default { color: #9cdcfe; }
+
+        /* 활성 탭 스타일 */
+        .tab.active {
+            background-color: #3f3f46;
+            border-bottom: 2px solid #007acc;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>전기전자동아리 웹페이지에 오신 것을 환영합니다!</h1>
-        <div class="user-info">
-            <label for="username">사용자 이름:</label>
-            <input type="text" id="username" placeholder="이름을 입력하세요">
+<body class="flex flex-col h-screen">
+
+    <!-- Header / Tab area -->
+    <header class="bg-[#252526] flex-shrink-0">
+        <div class="flex items-center border-t border-t-[#3f3f46]">
+            <button id="memo-tab" class="tab px-4 py-2 text-sm focus:outline-none">
+                📝 memo.txt
+            </button>
+            <button id="python-tab" class="tab px-4 py-2 text-sm focus:outline-none">
+                🐍 script.py
+            </button>
+            <button id="run-button" class="hidden ml-auto mr-4 px-3 py-1 text-sm bg-green-600 hover:bg-green-700 rounded focus:outline-none text-white">
+                실행 ▶
+            </button>
         </div>
     </header>
 
-    <nav>
-        <ul>
-            <li><a href="#intro">소개</a></li>
-            <li><a href="#fields">주요 분야</a></li>
-            <li><a href="#career">진로 및 전망</a></li>
-            <li><a href="#comments">댓글</a></li>
-        </ul>
-    </nav>
-
-    <main>
-        <section id="intro">
-            <h2>전기공학과 전자공학에 대하여</h2>
-            <p>전기전자공학은 전기공학과 전자공학을 포함한다. 부경대는 공과대학에 전기공학부, 정보융합대학에 전자공학부가 있다. 현대 사회의 모든 전자기기와 시스템의 기반을 이루는 핵심 분야이며, 우리의 삶을 윤택하게 만드는 데 필수적인 역할을 한다.</p>
-            <p>스마트폰, 컴퓨터, TV와 같은 일상 전자기기부터 인공지능, 빅데이터, 자율주행차, 로봇, 우주항공 등 최첨단 기술에 이르기까지 전기전자공학의 영향이 미치지 않는 곳이 없다.</p>
-            <p>전기공학은 높은 전압을 가지는 전기를 다루며 송전이나 컴퓨터의 파워 같은 분야에 쓰이지만, 전자공학은 낮은 전압에 쓰이는 전기를 다루며 반도체와 같은 분야에 쓰인다. </p>
-        </section>
-
-        <section id="fields">
-            <h2>전기전자공학의 주요 분야</h2>
-            <p>전기전자공학은 매우 광범위한 분야를 아우르며, 크게 다음과 같은 분야로 나눌 수 있다.</p>
-            <ul>
-                <li><strong>반도체 및 집적회로 (Semiconductor & IC):</strong> 마이크로프로세서, 메모리 등 모든 전자기기의 두뇌 역할을 하는 반도체 소자 및 회로 설계, 공정 기술을 연구한다.</li>
-                <li><strong>통신 및 네트워크 (Communication & Network):</strong> 유무선 통신 시스템, 5G/6G, 위성 통신, 네트워크 보안 등 정보 전송 및 교환 기술을 다룬다.</li>
-                <li><strong>전력 시스템 및 신재생 에너지 (Power System & Renewable Energy):</strong> 전기의 생산, 송배전, 전력 변환, 스마트 그리드, 태양광, 풍력 등 에너지 효율 및 지속 가능한 기술을 연구한다.</li>
-                <li><strong>제어 및 로봇 (Control & Robotics):</strong> 시스템의 동작을 제어하고 자동화하는 기술, 로봇의 설계 및 제어를 연구합니다. 자율주행차에도 필수적인 기술이다.</li>
-                <li><strong>신호처리 및 인공지능 (Signal Processing & AI):</strong> 음성, 영상, 데이터 등의 신호를 분석하고 처리하는 기술, 머신러닝, 딥러닝 등 인공지능 관련 기술을 개발한다.</li>
-                <li><strong>전자회로 및 시스템 (Electronic Circuits & Systems):</strong> 다양한 전자부품을 이용한 회로 설계 및 시스템 구현을 다훈다.</li>
-            </ul>
-        </section>
-
-        <section id="career">
-            <h2>전기전자공학 진로 및 전망</h2>
-            <p>전기전자공학은 현대 사회의 핵심 기술을 다루는 만큼, 매우 넓고 밝은 진로를 제공한다. 졸업 후에는 다양한 산업 분야에서 활약할 수 있다.</p>
-            <ul>
-                <li><strong>대기업 및 중견기업:</strong> 삼성전자, LG전자, SK하이닉스, 현대자동차, 통신사(SKT, KT, LG U+) 등 국내외 주요 기업의 연구 개발, 설계, 생산, 품질 관리 직무.</li>
-                <li><strong>IT/소프트웨어 기업:</strong> 네이버, 카카오, NC소프트 등 IT 플랫폼 및 게임 기업의 소프트웨어 개발, AI 엔지니어, 데이터 과학자.</li>
-                <li><strong>반도체 관련 기업:</strong> 반도체 소자 및 장비 개발, 파운드리, 메모리/비메모리 반도체 설계.</li>
-                <li><strong>전력 및 에너지 기업:</strong> 한국전력공사, 한국수력원자력 등 공기업, 신재생에너지 관련 기업.</li>
-                <li><strong>공공기관 및 연구소:</strong> 출연연구소, 정부 기관의 연구원, 공무원 등.</li>
-                <li><strong>창업:</strong> 혁신적인 아이디어를 바탕으로 한 스타트업 창업.</li>
-            </ul>
-            <p>4차 산업혁명 시대에 접어들면서 인공지능, 사물인터넷(IoT), 자율주행, 빅데이터 등 첨단 기술의 발전과 함께 전기전자공학의 중요성은 더욱 커지고 있으며, 관련 분야 전문 인력에 대한 수요는 지속적으로 증가할 것이다.</p>
-        </section>
-
-        <section id="comments">
-            <h2>댓글</h2>
-            <div class="comment-input">
-                <input type="text" id="comment-text" placeholder="댓글을 입력하세요.">
-                <button onclick="addComment()">댓글 달기</button>
-            </div>
-            <div id="comment-list" class="comment-list">
-                <div class="comment-item">
-                    <span class="comment-author">관리자</span>
-                    <span class="comment-date">2025-06-29 20:30</span>
-                    <p>부경대 전기전자공학 동아리 프로젝트 웹사이트에 오신 것을 환영합니다! 궁금한 점이 있으면 댓글로 남겨주세요.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Main Editor Area -->
+    <main class="flex-grow bg-[#1e1e1e] p-4 overflow-auto">
+        <div id="editor" 
+             contenteditable="true" 
+             spellcheck="false" 
+             class="editor-area h-full w-full"
+             data-placeholder="여기에 내용을 입력하세요...">
+        </div>
     </main>
 
-    <footer>
-        <p>&copy; 2025 부경대 전기전자 전공탐색 동아리. All rights reserved.</p>
+    <!-- Output Console -->
+    <div id="output-console" class="hidden flex-shrink-0 border-t-2 border-[#007acc]">
+        <div class="bg-[#252526] px-4 py-1 flex justify-between items-center text-sm">
+            <span>출력</span>
+            <button id="close-console-btn" class="text-xs hover:text-white text-gray-400">✖</button>
+        </div>
+        <pre id="output-text" class="p-4 text-sm whitespace-pre-wrap h-40 overflow-y-auto bg-[#1e1e1e]"></pre>
+    </div>
+
+
+    <!-- Footer / Status Bar -->
+    <footer class="bg-[#007acc] text-white flex-shrink-0 px-4 py-1 text-sm flex justify-between items-center">
+        <div>
+            <span id="status-text">준비 완료</span>
+        </div>
+        <div>
+            <span>Ln 1, Col 1</span> <!-- 이 부분은 기능 구현에서 제외되었습니다. -->
+        </div>
     </footer>
 
     <script>
-        function addComment() {
-            const usernameInput = document.getElementById('username');
-            const commentTextInput = document.getElementById('comment-text');
-            const commentList = document.getElementById('comment-list');
+        // DOM 요소 가져오기
+        const memoTab = document.getElementById('memo-tab');
+        const pythonTab = document.getElementById('python-tab');
+        const editor = document.getElementById('editor');
+        const statusText = document.getElementById('status-text');
+        const runButton = document.getElementById('run-button');
+        const outputConsole = document.getElementById('output-console');
+        const outputText = document.getElementById('output-text');
+        const closeConsoleBtn = document.getElementById('close-console-btn');
 
-            const username = usernameInput.value.trim();
-            const commentText = commentTextInput.value.trim();
-
-            if (username === "") {
-                alert("댓글을 달기 전에 사용자 이름을 입력해주세요.");
-                return;
+        // 애플리케이션 상태
+        let currentState = {
+            mode: 'memo', // 'memo' or 'python'
+            content: ''
+        };
+        
+        // --- URL 처리 ---
+        function updateURL() {
+            try {
+                const text = editor.innerText;
+                const base64 = btoa(unescape(encodeURIComponent(text)));
+                const hashContent = `mode=${currentState.mode}&data=${base64}`;
+                if (window.location.hash !== '#' + hashContent) {
+                   window.location.hash = hashContent;
+                }
+                currentState.content = text;
+            } catch (e) {
+                console.error("URL 업데이트 실패:", e);
+                statusText.textContent = "오류: 내용을 URL에 저장할 수 없습니다.";
             }
-            if (commentText === "") {
-                alert("댓글 내용을 입력해주세요.");
-                return;
-            }
-
-            const now = new Date();
-            const dateString = `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-
-            const newCommentDiv = document.createElement('div');
-            newCommentDiv.classList.add('comment-item');
-            newCommentDiv.innerHTML = `
-                <span class="comment-author">${username}</span>
-                <span class="comment-date">${dateString}</span>
-                <p>${commentText}</p>
-            `;
-
-            commentList.prepend(newCommentDiv); // 최신 댓글을 맨 위에 추가
-            commentTextInput.value = ''; // 댓글 입력창 비우기
         }
+
+        function loadFromURL() {
+            const params = new URLSearchParams(window.location.hash.substring(1));
+            const mode = params.get('mode') || 'memo';
+            const data = params.get('data');
+
+            switchMode(mode, false);
+
+            if (data) {
+                try {
+                    const decodedText = decodeURIComponent(escape(atob(data)));
+                    editor.innerText = decodedText;
+                    currentState.content = decodedText;
+                    if(currentState.mode === 'python') {
+                        highlightSyntax();
+                        validatePythonCode();
+                    }
+                } catch (e) {
+                    console.error("URL에서 데이터 로드 실패:", e);
+                    editor.innerText = "URL에 저장된 데이터를 불러오는 데 실패했습니다.";
+                }
+            }
+        }
+
+        // --- 모드 전환 ---
+        function switchMode(newMode, shouldUpdateURL = true) {
+            currentState.mode = newMode;
+            if (newMode === 'memo') {
+                memoTab.classList.add('active');
+                pythonTab.classList.remove('active');
+                editor.dataset.placeholder = '간단한 메모를 작성하세요...';
+                editor.innerHTML = editor.innerText;
+                statusText.textContent = "메모 모드";
+                runButton.classList.add('hidden');
+                closeConsole();
+            } else { // python mode
+                pythonTab.classList.add('active');
+                memoTab.classList.remove('active');
+                editor.dataset.placeholder = 'Python 코드를 작성하세요...\n\n# 예시 코드\nprint("안녕하세요! Web IDE입니다.")\nfor i in range(5):\n    print(f"{i+1}번째 출력입니다.")';
+                runButton.classList.remove('hidden');
+                highlightSyntax();
+                validatePythonCode();
+            }
+            if (shouldUpdateURL) {
+                updateURL();
+            }
+        }
+
+        // --- Python 코드 실행 ---
+        function runPythonCode() {
+            outputConsole.classList.remove('hidden');
+            const code = editor.innerText;
+            let capturedOutput = '';
+
+            const originalConsoleLog = console.log;
+            console.log = (...args) => {
+                capturedOutput += args.join(' ') + '\n';
+            };
+            
+            // Python의 print()를 JavaScript의 console.log()로 변환하여 실행을 시뮬레이션합니다.
+            const jsCode = code.replace(/print\s*\((.*?)\)/g, 'console.log($1)');
+
+            try {
+                new Function(jsCode)();
+                outputText.textContent = capturedOutput || '(출력 없음)';
+            } catch (e) {
+                outputText.textContent = `실행 오류:\n${e}`;
+            } finally {
+                console.log = originalConsoleLog; // 원래 console.log로 복원
+            }
+        }
+        
+        function closeConsole() {
+            outputConsole.classList.add('hidden');
+        }
+
+        // --- Python 코드 하이라이팅 및 유효성 검사 ---
+        const pythonPatterns = {
+            keyword: /\b(def|return|if|else|elif|for|while|import|from|class|try|except|finally|with|as|and|or|not|in|is|lambda|pass|break|continue|global|nonlocal|yield|assert|del|True|False|None)\b/g,
+            function: /\b([a-zA-Z_][a-zA-Z0-9_]*)(?=\s*\()/g,
+            string: /('[^']*'|"[^"]*"|f'[^']*'|f"[^"]*")/g,
+            number: /\b\d+(\.\d+)?\b/g,
+            comment: /#.*$/gm,
+            operator: /[+\-*/%=<>!&|~^]/g,
+            punctuation: /[\[\](){}:.,;]/g,
+        };
+
+        function highlightSyntax() {
+            if (currentState.mode !== 'python') return;
+            
+            const text = editor.innerText;
+            const selection = window.getSelection();
+            const range = selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+            
+            let start = 0, end = 0;
+            if(range) {
+                const preSelectionRange = range.cloneRange();
+                preSelectionRange.selectNodeContents(editor);
+                preSelectionRange.setEnd(range.startContainer, range.startOffset);
+                start = preSelectionRange.toString().length;
+                end = start + range.toString().length;
+            }
+
+            let html = text
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            for (const [tokenType, pattern] of Object.entries(pythonPatterns)) {
+                 html = html.replace(pattern, (match) => {
+                    if (html.substring(html.lastIndexOf('<'), html.indexOf(match)).includes('>')) {
+                         return match;
+                    }
+                    if(tokenType === 'function' && new RegExp(`def\\s+${match}`).test(text)) {
+                         return `<span class="token-function">${match}</span>`;
+                    }
+                     return `<span class="token-${tokenType}">${match}</span>`;
+                 });
+            }
+            html = html.replace(/<span class="token-function">(\b(if|for|while|in|print)\b)<\/span>/g, '<span class="token-keyword">$1</span>');
+            
+            editor.innerHTML = html;
+            restoreSelection(start, end);
+        }
+
+        function validatePythonCode() {
+            if (currentState.mode !== 'python') return;
+            const text = editor.innerText;
+            const stack = [];
+            const map = { "(": ")", "[": "]", "{": "}" };
+            for (let i = 0; i < text.length; i++) {
+                const char = text[i];
+                if (char === '(' || char === '[' || char === '{') {
+                    stack.push(char);
+                } else if (char === ')' || char === ']' || char === '}') {
+                    const lastOpen = stack.pop();
+                    if (map[lastOpen] !== char) {
+                        statusText.textContent = `오류: 괄호 짝이 맞지 않습니다. '${lastOpen}'에 대한 닫는 괄호가 필요합니다.`;
+                        return;
+                    }
+                }
+            }
+            if (stack.length > 0) {
+                statusText.textContent = `오류: 괄호 짝이 맞지 않습니다. '${stack[stack.length - 1]}'가 닫히지 않았습니다.`;
+            } else {
+                statusText.textContent = "Python: 구문 이상 없음 (기본 검사)";
+            }
+        }
+        
+        function restoreSelection(absoluteCharIndex, endCharIndex) {
+            const sel = window.getSelection();
+            sel.removeAllRanges();
+            const range = document.createRange();
+            let charIndex = 0, nodeStack = [editor], node, foundStart = false, stop = false;
+            range.setStart(editor, 0);
+            range.collapse(true);
+            while (!stop && (node = nodeStack.pop())) {
+                if (node.nodeType == 3) {
+                    const nextCharIndex = charIndex + node.length;
+                    if (!foundStart && absoluteCharIndex >= charIndex && absoluteCharIndex <= nextCharIndex) {
+                        range.setStart(node, absoluteCharIndex - charIndex);
+                        foundStart = true;
+                    }
+                    if (foundStart && endCharIndex >= charIndex && endCharIndex <= nextCharIndex) {
+                        range.setEnd(node, endCharIndex - charIndex);
+                        stop = true;
+                    }
+                    charIndex = nextCharIndex;
+                } else {
+                    let i = node.childNodes.length;
+                    while (i--) {
+                        nodeStack.push(node.childNodes[i]);
+                    }
+                }
+            }
+            sel.addRange(range);
+        }
+
+        // --- 이벤트 리스너 ---
+        memoTab.addEventListener('click', () => switchMode('memo'));
+        pythonTab.addEventListener('click', () => switchMode('python'));
+        runButton.addEventListener('click', runPythonCode);
+        closeConsoleBtn.addEventListener('click', closeConsole);
+
+        let inputTimeout;
+        editor.addEventListener('input', () => {
+            clearTimeout(inputTimeout);
+            inputTimeout = setTimeout(() => {
+                if (currentState.mode === 'python') {
+                    highlightSyntax();
+                    validatePythonCode();
+                }
+                updateURL();
+            }, 300);
+        });
+
+        window.addEventListener('DOMContentLoaded', loadFromURL);
     </script>
 </body>
 </html>
+
